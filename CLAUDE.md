@@ -26,6 +26,7 @@ Do not add any paid dependency or service without an approved ADR.
 ## Repo structure
 
 ```
+apps/landing          Marketing landing page — Vite 5 + React 18, Arabic RTL (deployed to GitHub Pages)
 apps/web              Next.js app — dashboard, builder, renderer, public sites
 packages/schemas      Zod schemas (profile, strategy, designSpec)
 packages/ai           LLMProvider interface + providers + prompts + evals

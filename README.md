@@ -12,7 +12,9 @@ stack table before contributing.
 
 ## Stack
 
-- **Next.js (App Router) + TypeScript strict** — `apps/web`
+- **Landing page (marketing site)** — `apps/landing` — Vite 5 + React 18, Arabic RTL,
+  Tajawal/Inter fonts, CSS Modules; **this is what GitHub Pages serves**
+- **Next.js (App Router) + TypeScript strict** — `apps/web` — dashboard, builder, renderer
 - **Zod schemas** — `packages/schemas`
 - **LLM provider abstraction (Gemini / Qwen)** — `packages/ai`
 - **Safe site renderer (skins, tokens, components)** — `packages/renderer`
@@ -30,5 +32,5 @@ npm run typecheck  # tsc --noEmit in every workspace
 ## CI/CD
 
 - `ci.yml` — typecheck + build on every PR and push to `main`.
-- `deploy.yml` — static export to GitHub Pages on every push to `main`
-  (site lives at `https://moerfan23.github.io/personal-plus/`).
+- `deploy.yml` — builds `apps/landing` and publishes it to GitHub Pages on
+  every push to `main` (site lives at `https://moerfan23.github.io/personal-plus/`).
