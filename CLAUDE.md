@@ -17,9 +17,9 @@ Everything runs on free tiers now and upgrades only after product validation:
 | Validation | Zod | — |
 | AI extraction | Gemini API free quota | Paid quota / more providers |
 | AI strategy/design | Qwen or Gemini (eval decides) | Paid quota / providers |
-| Hosting | Vercel Hobby or Cloudflare (ADR 0001 decides; free) | Paid plan |
+| Hosting | GitHub Pages (free, public repo, static export via `DEPLOY_TARGET=github-pages`) | Vercel/Cloudflare for SSR later |
+| CI/CD | GitHub Actions (`ci.yml` on PRs, `deploy.yml` to Pages on main) | — |
 | Publishing URLs | Path-based `/s/[slug]` (wildcard SSL is NOT free) | Wildcard subdomains + SSL later |
-| CI | GitHub Actions free | — |
 
 Do not add any paid dependency or service without an approved ADR.
 
