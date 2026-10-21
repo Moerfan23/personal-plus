@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
 import BrandLogo from './BrandLogo';
+import { submitLead } from '../lib/leads';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [subscribeError, setSubscribeError] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
+    if (!email.trim()) return;
+
+    // Newsletter subscribers are captured as leads in Supabase (source: newsletter)
+    const result = await submitLead({
+      name: email.split('@')[0],
+      email: email.trim(),
+      interest: 'newsletter',
+      source: 'newsletter',
+    });
+
+    if (result.ok) {
       setSubscribed(true);
+      setSubscribeError(false);
       setEmail('');
       setTimeout(() => setSubscribed(false), 5000);
+    } else {
+      setSubscribeError(true);
+      setTimeout(() => setSubscribeError(false), 5000);
     }
   };
 
@@ -79,7 +95,7 @@ export const Footer: React.FC = () => {
               <li><a href="#guides" className={styles.footerLink} onClick={(e) => { e.preventDefault(); alert('أدلة البدء قيد الإعداد'); }}>دليل الانطلاق السريع</a></li>
               <li><a href="#terms" className={styles.footerLink} onClick={(e) => { e.preventDefault(); alert('الشروط والأحكام القياسية'); }}>الشروط والأحكام</a></li>
               <li><a href="#privacy" className={styles.footerLink} onClick={(e) => { e.preventDefault(); alert('سياسة الخصوصية وحماية البيانات'); }}>سياسة الخصوصية</a></li>
-              <li><a href="#contact" className={styles.footerLink} onClick={(e) => { e.preventDefault(); alert('تواصل معنا: support@personalplus.io'); }}>اتصل بنا</a></li>
+              <li><a href="#contact" className={styles.footerLink}>اتصل بنا</a></li>
             </ul>
           </div>
 
@@ -108,6 +124,11 @@ export const Footer: React.FC = () => {
               {subscribed && (
                 <div className={styles.subscribeSuccess}>
                   ✓ تم اشتراكك بنجاح! تفقد بريدك الإلكتروني قريباً.
+                </div>
+              )}
+              {subscribeError && !subscribed && (
+                <div className={styles.subscribeSuccess} style={{ color: '#F87171' }}>
+                  تعذّر الاشتراك الآن — حاول مجدداً بعد قليل.
                 </div>
               )}
             </form>

@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['hero', 'services', 'clients', 'pricing', 'stats', 'blog'];
+      const sections = ['hero', 'services', 'clients', 'why', 'pricing', 'stats', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 120;
 
       for (const sectionId of sections) {
@@ -84,6 +84,14 @@ export const Navbar: React.FC = () => {
                 className={`${styles.navLink} ${activeSection === 'blog' ? styles.active : ''}`}
               >
                 المدونة
+              </a>
+            </li>
+            <li className={styles.navItem}>
+              <a
+                href="#contact"
+                className={`${styles.navLink} ${activeSection === 'contact' ? styles.active : ''}`}
+              >
+                تواصل معنا
               </a>
             </li>
           </ul>
@@ -160,6 +168,15 @@ export const Navbar: React.FC = () => {
                 onClick={closeMenu}
               >
                 المدونة
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact"
+                className={`${styles.mobileNavLink} ${activeSection === 'contact' ? styles.mobileActive : ''}`}
+                onClick={closeMenu}
+              >
+                تواصل معنا
               </a>
             </li>
           </ul>
