@@ -1,0 +1,28 @@
+.main {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+  font-family: var(--font-cairo), sans-serif;
+  background-color: #f7f7f2;
+  color: #0f1f1a;
+}
+
+.main h1 {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.main p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.note {
+  color: #a8b89b;
+  font-size: 14px;
+}
