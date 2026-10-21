@@ -34,3 +34,21 @@ npm run typecheck  # tsc --noEmit in every workspace
 - `ci.yml` — typecheck + build on every PR and push to `main`.
 - `deploy.yml` — builds `apps/landing` and publishes it to GitHub Pages on
   every push to `main` (site lives at `https://moerfan23.github.io/personal-plus/`).
+- `deploy-vercel.yml` — builds `apps/web` and deploys it to Vercel on every push
+  to `main` (dashboard lives at `https://ppstageweb.vercel.app`).
+
+## Live environments
+
+| Surface | URL | Host |
+|---------|-----|------|
+| Marketing landing page | https://moerfan23.github.io/personal-plus/ | GitHub Pages (static) |
+| Platform app (login, dashboard, onboarding) | https://ppstageweb.vercel.app | Vercel Hobby (SSR) |
+| Database / Auth / Storage | https://yfcxjwseztfinojccfce.supabase.co | Supabase free tier |
+
+Vercel project: `personal-plus-web` (team `moerfan23`). Auto-deploy uses the
+`VERCEL_TOKEN` secret plus `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` repo variables.
+
+> The Vercel project root directory is `apps/web`, so `apps/web` must stay
+> self-contained — it cannot import the `@pp/*` workspace packages yet. Move
+> shared code into a workspace only after the Vercel build is switched to
+> build from the repo root.
