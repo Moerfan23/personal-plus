@@ -1,24 +1,40 @@
-import Link from "next/link";
-import styles from "./page.module.css";
+import type { Metadata } from "next";
+import Navbar from "@/components/landing/Navbar";
+import HeroSection from "@/components/landing/HeroSection";
+import ServicesSection from "@/components/landing/ServicesSection";
+import ClientsSection from "@/components/landing/ClientsSection";
+import WhySection from "@/components/landing/WhySection";
+import PricingSection from "@/components/landing/PricingSection";
+import StatsSection from "@/components/landing/StatsSection";
+import BlogSection from "@/components/landing/BlogSection";
+import ContactSection from "@/components/landing/ContactSection";
+import CtaBand from "@/components/landing/CtaBand";
+import Footer from "@/components/landing/Footer";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Personal Plus | بيرسونال بلس - من خبرتك إلى مشروعك الرقمي",
+  description:
+    "منصة بيرسونال بلس - حوّل خبرتك ومهاراتك إلى مشروع رقمي متكامل وموقع شخصي احترافي.",
+};
+
+export default function LandingPage() {
   return (
-    <main className={styles.main}>
-      <h1>Personal Plus</h1>
-      <p>من خبرتك إلى مشروعك الرقمي.</p>
+    <div className="personal-plus-app">
+      <Navbar />
 
-      <div className={styles.actions}>
-        <Link href="/signup" className={styles.primaryBtn}>
-          أنشئ حسابك المجاني
-        </Link>
-        <Link href="/login" className={styles.ghostBtn}>
-          تسجيل الدخول
-        </Link>
-      </div>
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <ClientsSection />
+        <WhySection />
+        <PricingSection />
+        <StatsSection />
+        <BlogSection />
+        <ContactSection />
+        <CtaBand />
+      </main>
 
-      <p className={styles.note}>
-        لوحة التحكم في المنصة: <Link href="/dashboard">/dashboard</Link>
-      </p>
-    </main>
+      <Footer />
+    </div>
   );
 }
