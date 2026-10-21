@@ -12,7 +12,11 @@ export const metadata: Metadata = {
   description: "من خبرتك إلى مشروعك الرقمي",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="ar" dir="rtl" className={cairo.variable}>
       <body>{children}</body>
