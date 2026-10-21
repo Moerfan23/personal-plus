@@ -27,3 +27,6 @@ Thumbs.db
 npm-debug.log*
 .vercel
 .wrangler
+
+.vercel
+.env*

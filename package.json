@@ -10,6 +10,6 @@
     "dev": "npm run dev --workspace @pp/web",
     "build": "npm run build --workspace @pp/web",
     "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "tsc --build"
+    "typecheck": "npm run typecheck --workspaces --if-present"
   }
 }

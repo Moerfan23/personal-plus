@@ -1,16 +1,12 @@
-name: Deploy web to Vercel
+name: Deploy to Vercel
 
 on:
   push:
     branches: [main]
-    paths:
-      - "apps/web/**"
-      - "packages/**"
-      - ".github/workflows/deploy-vercel.yml"
   workflow_dispatch:
 
 concurrency:
-  group: vercel-web-deploy
+  group: vercel-deploy
   cancel-in-progress: true
 
 jobs:
@@ -36,6 +32,8 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
       - name: Deploy
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
         env:

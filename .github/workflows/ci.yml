@@ -25,7 +25,5 @@ jobs:
         run: npm ci
       - name: Typecheck
         run: npm run typecheck --workspaces --if-present
-      - name: Build landing
-        run: npm run build --workspace @pp/landing
       - name: Build web
         run: npm run build --workspace @pp/web
