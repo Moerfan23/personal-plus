@@ -12,6 +12,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,5 +25,7 @@ jobs:
         run: npm ci
       - name: Typecheck
         run: npm run typecheck --workspaces --if-present
-      - name: Build
-        run: npm run build
+      - name: Build landing
+        run: npm run build --workspace @pp/landing
+      - name: Build web
+        run: npm run build --workspace @pp/web
