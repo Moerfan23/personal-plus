@@ -4,10 +4,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 18px;
   padding: 24px;
   text-align: center;
-  font-family: var(--font-cairo), sans-serif;
+  font-family: var(--font-cairo), "Segoe UI", sans-serif;
   background-color: #f7f7f2;
   color: #0f1f1a;
 }
@@ -22,7 +22,51 @@
   line-height: 1.8;
 }
 
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.primaryBtn {
+  padding: 13px 28px;
+  border-radius: 50px;
+  background: #0f1f1a;
+  color: #d5f36a;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.primaryBtn:hover {
+  background: #1a362d;
+  transform: translateY(-2px);
+}
+
+.ghostBtn {
+  padding: 13px 28px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(15, 31, 26, 0.2);
+  color: #0f1f1a;
+  font-weight: 500;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.ghostBtn:hover {
+  border-color: #0f1f1a;
+}
+
 .note {
   color: #a8b89b;
-  font-size: 14px;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: #0f1f1a;
 }
