@@ -17,8 +17,8 @@ Everything runs on free tiers now and upgrades only after product validation:
 | Validation | Zod | — |
 | AI extraction | Gemini API free quota | Paid quota / more providers |
 | AI strategy/design | Qwen or Gemini (eval decides) | Paid quota / providers |
-| Hosting | GitHub Pages (free, public repo, static export via `DEPLOY_TARGET=github-pages`) | Vercel/Cloudflare for SSR later |
-| CI/CD | GitHub Actions (`ci.yml` on PRs, `deploy.yml` to Pages on main) | — |
+| Hosting | Vercel Hobby (free SSR, one app serves landing + platform) | Vercel Pro / Cloudflare later |
+| CI/CD | GitHub Actions (`ci.yml` on PRs, `deploy-vercel.yml` to Vercel on main) | — |
 | Publishing URLs | Path-based `/s/[slug]` (wildcard SSL is NOT free) | Wildcard subdomains + SSL later |
 
 Do not add any paid dependency or service without an approved ADR.
@@ -26,8 +26,8 @@ Do not add any paid dependency or service without an approved ADR.
 ## Repo structure
 
 ```
-apps/landing          Marketing landing page — Vite 5 + React 18, Arabic RTL (deployed to GitHub Pages)
-apps/web              Next.js app — dashboard, builder, renderer, public sites
+apps/web              Next.js app — landing page at /, plus /login /signup /dashboard /onboarding
+apps/web/components/landing   Landing page sections (Arabic RTL, CSS Modules)
 packages/schemas      Zod schemas (profile, strategy, designSpec)
 packages/ai           LLMProvider interface + providers + prompts + evals
 packages/renderer     Safe React section components + skins + design tokens
@@ -37,7 +37,12 @@ docs/adr              Architecture decision records
 docs/specs            One spec per feature before implementation
 ```
 
-Workspace packages use TS source directly (`main: ./src/index.ts`); `apps/web` consumes them via `transpilePackages` if needed.
+Workspace packages use TS source directly (`main: ./src/index.ts`).
+
+> The Vercel project root is `apps/web`, so `apps/web` must stay
+> self-contained — it cannot import the `@pp/*` workspace packages yet. Move
+> shared code into a workspace only after the Vercel build is switched to
+> build from the repo root.
 
 ## Commands
 
